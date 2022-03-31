@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta id="my-data" data-name="VCexplanation" data-other="{{ ', '.join(reference) }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link href="{{ url_for('static', filename='css/versions.css') }}" rel="stylesheet" />
+    <link href="../static/css/versions.css" rel="stylesheet" type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--<script src="../static/JS/versions.js" defer></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/versions.js') }}" defer></script>
+
+    <title>Download options</title>
+</head>
+<body>
+    <main>
+        <div class="show_bg_2"></div>
+        <div class="topbar">
+            <ul>
+                <li><a href="{{ url_for('chat') }}" class="top_text">Home</a></li>
+            </ul>
+        </div>
+
+        <div class="image"></div>
+
+        <div class="buffer">
+            <h1 class="title">bitBybit</h1>
+        </div>
+        <!--{{ url_for('versions') }}-->
+        <div class="formcontents">
+            <form action="/versions/?data-status={{ value }}" enctype="multipart/form-data" method="post" id="mainform" role="form">
+                <div class="buffer">
+                    <label for="versions" class="labels">Link expiration time: </label>
+						<select name="versions" class="textlat">
+                            {% for key, value in versions.items() %}
+                                <option value="{{key}}">Version {{key}}</option>
+                            {% endfor %}
+						</select>
+                </div>
+
+                <div class="buffer">
+                    <input name="enter_chat" class="redirect" type="submit" value="Download">
+                </div>
+            </form>
+
+            <div class="explanation">
+
+            </div>
+
+            <div class="notice">
+                {% with messages = get_flashed_messages() %}  
+                {% if messages %}  
+                    {% for message in messages %}  
+                    <p class="top_text err">{{ message }}</p>  
+                    {% endfor %}  
+                {% endif %}  
+                {% endwith %}  
+            </div>
+        </div>
+        <script>
+            var parsed = {{versions | tojson}};
+
+            $(document).ready(function() {
+                document.querySelector(".explanation").innerHTML = parsed[ (document.querySelector(".textlat")).value ];
+                
+                document.querySelector(".textlat").addEventListener("change", function(){
+                    document.querySelector(".explanation").innerHTML = parsed[ (document.querySelector(".textlat")).value ];
+                });
+            });
+
+        </script>
+    </main>
+</body>
+</html>

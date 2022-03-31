@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/chat_template.css') }}" rel="stylesheet" />
+    <link href="../static/css/chat_template.css" rel="stylesheet" type="text/css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" defer></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/updating.js') }}" defer></script>
+
+    <title>Chatroom {{ var }}</title>
+</head>
+<body>
+    <main class="mega-flex">
+        <div class="show_bg_2"></div>
+
+        <div class="filler">
+            <div class="topbar">
+                <a href="{{ url_for('hello') }}" class="top_text">Home</a>
+            </div>
+                
+            <div class="subtitle"> bitBybit/{{ var }} </div>
+
+            <div class="imageLogo">
+                <img src="{{ url_for('static', filename='images/Support.png') }}" height="100px" width="100px">
+            </div>
+        </div>
+
+        <div class="content">
+            {% for key, value in dict_item.items() %}
+                {% if key.startswith('tEXt') %}
+                    <div class="msgboxes tri-right left-top"> {{ value }} </div>
+                {% else %}
+                    <div class="msgboxes tri-right left-top">
+                        <a class="point" href="/versions/?data-status={{ value }}">
+                            <div class="iamge"></div>
+                            <input name="retrieval" class="retrieval" value="{{ key }}" type="submit">{{ key }}
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="bottom_control">
+            <form enctype=multipart/form-data method="post" action="{{ url_for('chat') }}" id="mainform" class="dropzone" name="mainform">
+                <textarea class="msg_box" form="mainform" name="chatarea" placeholder="Message" maxlength = "500"></textarea>
+                <label class="custom-file-upload">
+                    
+                    <a href="{{ url_for('options') }}">
+                        <img src="{{ url_for('static', filename='images/paperclip.png') }}" height="50px" width="50px">
+                    </a>
+                </label>
+                <label class="custom-msg-submission">
+                    <img src="{{ url_for('static', filename='images/send.png') }}" height="50px" width="50px">
+                    <input name="send" type="submit" class="submit" value="">
+                </label>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

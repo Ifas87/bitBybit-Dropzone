@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta id="my-data" data-name="fileList" data-other="{{ ', '.join(reference) }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link href="{{ url_for('static', filename='css/options.css') }}" rel="stylesheet" />
+    <link href="../static/css/options.css" rel="stylesheet" type="text/css">
+
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.5.0.js"></script> -->
+
+    <!--<script src="../static/JS/options.js" defer></script>-->
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/options.js') }}" defer></script>
+
+    <!--
+        Bootstrap stuff for progress bar (old)
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    -->
+
+    <!-- Dropzone JS imports-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/basic.min.css"/>
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.js"> </script>
+
+    <title>Upload options</title>
+
+</head>
+<body>
+    <main class="mainbox">
+        <div class="show_bg_2"></div>
+
+        <div class="topbar">
+            <a href="{{ url_for('chat') }}" class="top_text">Return</a>
+            <h1 class="title">bitBybit</h1>
+            <div class="image">
+                <img src="{{ url_for('static', filename='images/Support.png') }}" height="150px" width="150px">
+            </div>
+        </div>
+
+        <div class="interactableOptions">
+            <div class="fileside">
+
+                <div class="formContents">
+                    <div class="dropzone_holding">
+                        <form action="{{ url_for('options') }}" enctype="multipart/form-data" method="post" id="mainform" class="dropzone"></form>
+                    </div>
+                    
+                    <div class="actualFormContents">
+                        <!--
+                        <div class="buffer">
+                            <label for="filesInput" class="labels">File upload: </label>
+                            <label class="custom-file-upload">
+                                <img src="{{ url_for('static', filename='images/paperclip.png') }}" height="50px" width="50px">
+                                <input type="file" class="filesInput" name="filesInput" id="filesInput" multiple>
+                            </label>
+                        </div>
+                        -->
+
+                        <div class="buffer">
+                            <label for="links" class="labels" id="nameLabel">Zip file Name: </label>
+                            <input name="links" class="textboxes" type="text" id="inputLabel" data-max-words="1" form="mainform" placeholder="Enter zipfile name">
+                        </div>
+                        <div class="buffer">
+                            <label class="labels" for="switch">Compress as ZIP:</label>
+                            <input type="checkbox" id="switch" class="fileCompressionSwitch" name="switch" ><!--form="mainform">-->
+                        </div>
+                        <div class="buffer">
+                            <input name="enter_chat" class="redirect" type="submit" value="Upload" form="mainform">
+                        </div>
+                    </div>
+                    
+                    <script type="application/javascript">
+                        Dropzone.options.mainform = {
+                            paramName: 'filesInput',
+                            url: '/options',
+                            chunking: true,
+                            forceChunking: true,
+                            autoProcessQueue: false,
+                            //uploadMultiple: true,
+                            maxFilesize: 10000, 
+                            chunkSize: 1000000,
+                            parallelUploads: 1,
+
+                            init: function() {
+                                var myDropzone = Dropzone.forElement(".dropzone");
+                                document.querySelector(".redirect").addEventListener("click", function(e) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    myDropzone.processQueue();
+                                });
+                                myDropzone.on("addedfile", function(file) {
+                                    let allFiles = myDropzone.files;
+
+                                    for (let i=0; i<allFiles.length; i++){
+                                        console.log(myDropzone.files.length)
+
+                                        let buffer = document.createElement("div");
+                                        buffer.classList.add("buffer");
+
+                                        let currentLabels = document.createElement("label");
+                                        currentLabels.classList.add("labels2");
+                                        currentLabels.setAttribute("for", allFiles[i].name+"textarea");
+                                        currentLabels.innerHTML = allFiles[i].name + message; 
+
+                                        let textarea = document.createElement("textarea");
+                                        textarea.classList.add("msg_box");
+                                        textarea.setAttribute("name", allFiles[i].name+"textarea");
+                                        textarea.setAttribute("form", "mainform");
+                                        textarea.setAttribute("value", "Some changes");
+
+                                        buffer.appendChild(currentLabels);
+                                        buffer.appendChild(textarea);
+                                        document.querySelector(".versionControlLogs").appendChild(buffer);
+                                    }
+                                });
+
+                                myDropzone.on('sending', function(data, xhr, formData) {
+                                    formData.append( $("#inputLabel").attr("name"), $("#inputLabel").val() );
+                                    formData.append( "switch", $("#switch").prop("checked") );
+                                    console.log($("#inputLabel").attr("name"), $("#inputLabel").val());
+                                    formData.append( "Numfiles", myDropzone.files.length)
+
+                                    $("#mainform").find("textarea").each(function(){
+                                        console.log($(this).attr("name"));
+                                        formData.append($(this).attr("name"), $(this).value );
+                                    });
+                                });
+
+                                myDropzone.on('sendingmultiple', function(data, xhr, formData) {
+                                    formData.append( $("#inputLabel").attr("name"), $("#inputLabel").val() );
+                                    formData.append( "switch", $("#switch").prop("checked") );
+                                    formData.append( "Numfiles", myDropzone.files.length)
+                                    console.log($("#inputLabel").attr("name"), $("#inputLabel").val());
+
+                                    $("#mainform").find("textarea").each(function(){
+                                        console.log($(this).attr("name") );
+                                        formData.append($(this).attr("name"), $(this).value );
+                                    });
+                                });
+                            }
+                        }           
+                    </script>
+
+                </div>
+
+            </div>
+
+            <div class="generatedSide">
+                <!--
+                <div class="allFilelList"></div>
+
+                <div class="progress positioning">
+                    <div id="progressBar" class="progress-bar progress-bar-striped positioning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        0%
+                    </div>
+                </div>
+                -->
+                <div class="versionControlLogs">
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

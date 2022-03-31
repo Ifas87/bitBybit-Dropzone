@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+			
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+		<link href="{{ url_for('static', filename='css/create.css') }}" rel="stylesheet" />
+		<link href="../static/css/create.css" rel="stylesheet" type="text/css">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+		<title>Create Room</title>
+	</head>
+			
+	<body>
+		<main>
+		<div class="show_bg_2"></div>
+			<div class="topbar">
+				<ul>
+					<li><a href="{{ url_for('hello') }}" class="top_text">Home</a></li>
+				</ul>
+			</div>
+			<div class="image"></div>
+			<div class="buffer">
+				<h1 class="title">bitBybit</h1>
+			</div>
+
+			<div class="center">
+				<form enctype=multipart/form-data method="post" action="{{ url_for('create') }}" id="mainform">
+					<div class="large_buffer">
+						<div class="buffer">
+							<label for="links" class="labels">Name: </label>
+							<input name="links" class="textboxes" type="text" data-max-words="1" placeholder="Enter room name" required>
+						</div>
+						<div class="buffer">
+							<label for="passcodes" class="labels">Security pin: </label>
+							<input name="passcodes" class="textboxes" type="text" data-max-words="1" placeholder="eg: 123">
+						</div>
+						<div class="buffer">
+							<label for="TTL" class="labels">Link expiration time: </label>
+							<select name="TTL" class="textlat">
+								<option value="300">Delete After 5 minutes</option>
+								<option value="1800">After 1/2 an hour</option>
+								<option value="3600">After 1 hour</option>
+								<option value="7200">After 2 hours</option>
+								<option value="14400">After 4 hours</option>
+								<option value="20000">Indefinitely</option>
+							</select>
+						</div>
+	
+						<div class="buffer">
+							<input name="submit" class="redirect" type="submit" value="Join">
+						</div>
+					</div>
+
+					<div class="notice">
+					{% with messages = get_flashed_messages() %}  
+					{% if messages %}  
+						{% for message in messages %}  
+						<p class="top_text err">{{ message }}</p>  
+						{% endfor %}  
+					{% endif %}  
+					{% endwith %}  
+					</div>
+				</form>
+			</div>
+		</main>
+	</body>
+</html>
