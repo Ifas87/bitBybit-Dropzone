@@ -161,7 +161,7 @@ def timer(t, chatname):
 @app.route('/')
 def hello():
     session["current_room"] = "placeholder"
-    session["ZIPneeded"] = ""
+    session["currentVersion"] = 1
     return render_template('index.html', template_folder='templates')
 
 
@@ -339,9 +339,10 @@ def chat():
         
     return render_template('chat_template.html', template_folder='templates', var=roomname, dict_item=chat_content)
 
-makingoradding = False
-tempZIPfiles = {}
-tempVersfiles = {}
+
+currentHighestVersion = 0
+fileContinuity = False
+
 """
     desc- The options route that allows you to customise the file upload options such as compression and
     add a version control note to each file
@@ -355,6 +356,8 @@ def options():
     dir_contents = []
     inner_dir_path = r""
     fileNumbers = 0
+    global fileContinuity
+    session["fileContinuity"] = fileContinuity
 
     dir_contents = lister(customPath)
 
@@ -370,6 +373,7 @@ def options():
         print(request.form)
         print(request.files.getlist("filesInput"))
         print(checks, zipname)
+
 
         if len(request.files.getlist("filesInput")) > 0:
             # obtain a filelist from the client of files sent
@@ -410,6 +414,91 @@ def options():
 
             # In the event of no compression option and storing files as Version control objects
             else:
+                tempFile = request.files["filesInput"]
+                folder_name = switchFiletoFolder(tempFile.filename, ".", "-")
+                current_chunk = int(request.form['dzchunkindex'])
+                total_chunks = int(request.form["dztotalchunkcount"])
+                
+                """
+                    session["currentVersion"] = 1
+                    session["fileContinuity"] = fileContinuity
+                """
+
+                if folder_name in dir_contents:
+                    roomContents = lister2( os.path.join( customPath, folder_name ) )
+
+                    print(os.path.join( customPath, folder_name ))
+                    highestVersion = ""
+                    innerFiles = []
+
+                    if current_chunk == 0 or session["fileContinuity"]:
+                        # The if/else exists for in the event with no extension is added to the program
+                        try:
+                            innerFiles = [int(x.split(".")[0]) if "." in x else int(x) for x in roomContents]
+                        except ValueError:
+                            print("Value Error anticipated")
+                        
+                        if(session["fileContinuity"]):
+                            highestVersion = str(max(innerFiles))
+                            session["currentVersion"] = highestVersion
+                        else:
+                            highestVersion = str(max(innerFiles)+1)
+                            session["currentVersion"] = highestVersion
+                        
+                        print("new highest", highestVersion)
+
+                    """
+                    try:
+                        with open( os.path.join( customPath, folder_name, ("1." +(tempFile.filename.split(".")[1] if "." in tempFile.filename else tempFile.filename) ) , 'ab') ) as f:
+                            f.seek(int(request.form['dzchunkbyteoffset']))
+                            f.write(tempFile.stream.read())
+                    except OSError:
+                        print("Initial File writing error")
+                    """
+                    print("Session vriables here:", session["currentVersion"])
+                    with open( os.path.join( customPath, folder_name, (str(session["currentVersion"])+"."+(tempFile.filename.split(".")[1] if "." in tempFile.filename else "")  ) ) , 'ab') as f:
+                        f.seek(int(request.form['dzchunkbyteoffset']))
+                        f.write(tempFile.stream.read())
+
+                    if (current_chunk+1) >= total_chunks:
+                        VersionInfoPath = os.path.join( customPath, folder_name, "VersionInfo/VersionInfo.txt")
+                        currentChanges = request.form.get(tempFile.filename+"textarea")
+                        temp_strs = currentChanges.replace("\n", " ") + "\n"
+                        fileContinuity = False
+                        
+                        with open( VersionInfoPath, 'a') as f:
+                            f.write("Version "+highestVersion +": "+temp_strs)
+
+                else:
+                    if current_chunk == 0:
+                        # Make the related files and folders required for version control
+                        os.mkdir( os.path.join(customPath, folder_name) )
+                        os.mkdir( os.path.join(customPath, folder_name, "VersionInfo") )
+
+                    """
+                    try:
+                        with open( os.path.join( customPath, folder_name, ("1." +(tempFile.filename.split(".")[1] if "." in tempFile.filename else tempFile.filename) ) , 'ab') ) as f:
+                            f.seek(int(request.form['dzchunkbyteoffset']))
+                            f.write(tempFile.stream.read())
+                    except OSError:
+                        print("Initial File writing error")
+                    """
+                    with open( os.path.join( customPath, folder_name, ("1." +(tempFile.filename.split(".")[1] if "." in tempFile.filename else "") ) ), 'ab') as f:
+                            f.seek(int(request.form['dzchunkbyteoffset']))
+                            f.write(tempFile.stream.read())
+                    
+                    fileContinuity = True
+
+                    if (current_chunk+1) >= total_chunks:
+                        VersionInfoPath = os.path.join( customPath, folder_name, "VersionInfo/VersionInfo.txt")
+                        currentChanges = request.form.get(tempFile.filename+"textarea")
+                        temp_strs = currentChanges.replace("\n", " ") + "\n"
+                        with open( VersionInfoPath, 'a') as f:
+                            f.write("Version 1: "+ temp_strs)
+                    
+
+
+                """
                 # Loop through all files
                 for file in files:
 
@@ -473,6 +562,7 @@ def options():
                 
                 # Go back to the chat page
                 return redirect(url_for('chat'))
+                """
 
 
     # Provide a reference list for verion tracked files so these the status of these files can be tracked

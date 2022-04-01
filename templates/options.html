@@ -99,6 +99,7 @@
                                     myDropzone.processQueue();
                                 });
                                 myDropzone.on("addedfile", function(file) {
+                                    document.querySelector(".versionControlLogs").innerHTML = "";
                                     let allFiles = myDropzone.files;
 
                                     for (let i=0; i<allFiles.length; i++){
@@ -130,9 +131,9 @@
                                     console.log($("#inputLabel").attr("name"), $("#inputLabel").val());
                                     formData.append( "Numfiles", myDropzone.files.length)
 
-                                    $("#mainform").find("textarea").each(function(){
+                                    $(".versionControlLogs").find("textarea").each(function(){
                                         console.log($(this).attr("name"));
-                                        formData.append($(this).attr("name"), $(this).value );
+                                        formData.append($(this).attr("name"), $(this).val() );
                                     });
                                 });
 
@@ -142,9 +143,9 @@
                                     formData.append( "Numfiles", myDropzone.files.length)
                                     console.log($("#inputLabel").attr("name"), $("#inputLabel").val());
 
-                                    $("#mainform").find("textarea").each(function(){
+                                    $(".versionControlLogs").find("textarea").each(function(){
                                         console.log($(this).attr("name") );
-                                        formData.append($(this).attr("name"), $(this).value );
+                                        formData.append($(this).attr("name"), $(this).val() );
                                     });
                                 });
                             }
