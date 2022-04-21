@@ -166,7 +166,7 @@ def hello():
 
 
 """
-    desc- The create route that allows users to create rooms deternmine their lifetime
+    desc- The create route that allows users to create rooms and deternmine their lifetime
 """
 @app.route('/create',methods=['POST','GET'])
 def create():
@@ -207,7 +207,7 @@ def create():
             
             # Check the timer value obtained from the form. 
             if(not(duration >= 20000)):
-                thread = Thread(target = timer, args = (duration, room)) # !!!! Change this line in code to the value of the TTL dropdown box 
+                thread = Thread(target = timer, args = (duration, room)) # !!!! TTL dropdown box 
                 thread.start()
             
             # forward to user to the created chat page
@@ -293,6 +293,9 @@ def chat():
 
         # Obtaining the message string from within the form
         text = request.form.get('chatarea')
+
+        print("Message Received", str(text))
+
         if not text == "":
 
             # Saving the message in a .txt file with a unique date related name
@@ -447,16 +450,10 @@ def options():
                         
                         print("new highest", highestVersion)
 
-                    """
-                    try:
-                        with open( os.path.join( customPath, folder_name, ("1." +(tempFile.filename.split(".")[1] if "." in tempFile.filename else tempFile.filename) ) , 'ab') ) as f:
-                            f.seek(int(request.form['dzchunkbyteoffset']))
-                            f.write(tempFile.stream.read())
-                    except OSError:
-                        print("Initial File writing error")
-                    """
+                    
                     print("Session vriables here:", session["currentVersion"])
-                    with open( os.path.join( customPath, folder_name, (str(session["currentVersion"])+"."+(tempFile.filename.split(".")[1] if "." in tempFile.filename else "")  ) ) , 'ab') as f:
+                    with open( os.path.join( customPath, folder_name, (str(session["currentVersion"])+"."+
+                    (tempFile.filename.split(".")[1] if "." in tempFile.filename else "")  ) ) , 'ab') as f:
                         f.seek(int(request.form['dzchunkbyteoffset']))
                         f.write(tempFile.stream.read())
 
@@ -475,15 +472,9 @@ def options():
                         os.mkdir( os.path.join(customPath, folder_name) )
                         os.mkdir( os.path.join(customPath, folder_name, "VersionInfo") )
 
-                    """
-                    try:
-                        with open( os.path.join( customPath, folder_name, ("1." +(tempFile.filename.split(".")[1] if "." in tempFile.filename else tempFile.filename) ) , 'ab') ) as f:
-                            f.seek(int(request.form['dzchunkbyteoffset']))
-                            f.write(tempFile.stream.read())
-                    except OSError:
-                        print("Initial File writing error")
-                    """
-                    with open( os.path.join( customPath, folder_name, ("1." +(tempFile.filename.split(".")[1] if "." in tempFile.filename else "") ) ), 'ab') as f:
+                    
+                    with open( os.path.join( customPath, folder_name, ("1." +
+                    (tempFile.filename.split(".")[1] if "." in tempFile.filename else "") ) ), 'ab') as f:
                             f.seek(int(request.form['dzchunkbyteoffset']))
                             f.write(tempFile.stream.read())
                     
@@ -495,75 +486,6 @@ def options():
                         temp_strs = currentChanges.replace("\n", " ") + "\n"
                         with open( VersionInfoPath, 'a') as f:
                             f.write("Version 1: "+ temp_strs)
-                    
-
-
-                """
-                # Loop through all files
-                for file in files:
-
-                    # creating a folder for each file and adding a versionFile in as well
-                    folder_name = switchFiletoFolder(file.filename, ".", "-")
-                    inner_dir_path = os.path.join(customPath, folder_name)
-                    version_manager_path = os.path.join(inner_dir_path, "VersionInfo/VersionInfo.txt")
-                    
-                    # Getting the version note from the current uploading user
-                    current_changes = request.form.get(file.filename+"textarea")
-
-                    # Scenario for If the folder already exists
-                    if folder_name in dir_contents:
-                        # Get the current contents of that folder
-                        inner_dir_path_contents = lister2(inner_dir_path)
-                        temp_version = ""
-
-                        # The if/else exists for in the event with no extension is added to the program
-                        try:
-                            inner_dir_path_contents = [int(x.split(".")[0]) if "." in file.filename else int(x) for x in inner_dir_path_contents]
-                        except ValueError:
-                            print("Value Error anticipated")
-                        
-                        #print(max(inner_dir_path_contents))
-
-                        # Get the highest version number and increment it by 1
-                        temp_version = str(max(inner_dir_path_contents)+1)
-
-                        # Save file as the new version number
-                        file.save(os.path.join(app.config['UPLOADED_PATH'],
-                            (roomname+"/"+folder_name+"/"+ ( str(temp_version)+"."+(file.filename.split(".")[1] if "." in file.filename else file.filename)) ) ))
-
-                        # Add the changes to the VersionInfo file
-                        temp_strs = current_changes.replace("\n", " ") + "\n"
-
-                        # print("Reached file reading part")
-                        with open(version_manager_path, 'a') as f:
-                            f.write("Version "+temp_version +": "+temp_strs)
-
-                    # Scenario for when this is a new file
-                    else:
-                        # Make the related files and folders required for version control
-                        os.mkdir(inner_dir_path)
-                        os.mkdir(os.path.join(inner_dir_path, "VersionInfo"))
-                        inner_dir_path_contents = lister2(inner_dir_path)
-
-                        # Save file with that name
-                        file.save(os.path.join(app.config['UPLOADED_PATH'], 
-                            (roomname+"/"+folder_name+"/"+ ("1." +(file.filename.split(".")[1] if "." in file.filename else file.filename) ) )))
-
-                        try:
-                            inner_dir_path_contents = [int(x.split(".")[0]) if "." in file.filename else int(x) for x in inner_dir_path_contents]
-                        except ValueError:
-                            print("Value Error anticipated")
-
-                        # Add those changes and the the uploading note the versionInfo file
-                        temp_strs = current_changes.replace("\n", " ") + "\n"
-
-                        with open(version_manager_path, 'a') as f:
-                            f.write("Version 1: "+ temp_strs)
-                
-                # Go back to the chat page
-                return redirect(url_for('chat'))
-                """
-
 
     # Provide a reference list for verion tracked files so these the status of these files can be tracked
     # client side for less load on the server
@@ -648,6 +570,7 @@ def update():
         else:
             chat_content["DELETED"] = "".format('"{}" timer has expired ', roomname)
 
+        #print(chat_content)
         return json.dumps(chat_content)
 
 

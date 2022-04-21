@@ -23,7 +23,7 @@
 .topbar{
 	z-index: 3;
 
-	margin: 20px;
+	margin: 5px;
 	padding: 10px;
 	width: 100%;
 
@@ -87,7 +87,7 @@
 .fileside{
 	display: flex;
 	flex-direction: column;
-	flex-grow: 3;
+	flex-grow: 5;
 
 	margin: 10px;
 }
@@ -98,21 +98,11 @@
 	flex-grow: 5;
 
 	justify-content: center;
-	align-items: center;
 
 	margin: 10px;
 }
 
 .formcontents {
-	/*
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 550px;
-    height: 300px;
-    margin-top: -100px;
-    margin-left: -275px;
-	*/
 
     display: flex;
     flex-direction: column;
@@ -310,9 +300,45 @@ Checkbox additions
 	padding: 5px;
 }
 
+.dropzone {
+    background: white;
+    border-radius: 5px;
+    border: 2px dashed rgb(0, 135, 247);
+    border-image: none;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media only screen and (max-width:1366px){
+	.interactableOptions{
+		flex-direction: column;
+	}
+	.top_text{
+		font-size: 15px;
+	}
+	.title{
+		font-size: 50px;
+	}
+	.imgs{
+		height: 100px;
+		width: 100px;
+	}
+}
+
 @media only screen and (max-width:920px){
-	.formcontents{
-		top: 25%;
+	.interactableOptions{
+		flex-direction: column;
+	}
+	.top_text{
+		font-size: 15px;
+	}
+	.title{
+		font-size: 50px;
+	}
+	.imgs{
+		height: 65px;
+		width: 65px;
 	}
 	
 	.labels{
@@ -342,8 +368,18 @@ Checkbox additions
 }
 
 @media only screen and (max-width:600px){
-	.formcontents{
-		top: 40%;
+	.interactableOptions{
+		flex-direction: column;
+	}
+	.top_text{
+		font-size: 15px;
+	}
+	.title{
+		font-size: 50px;
+	}
+	.imgs{
+		height: 65px;
+		width: 65px;
 	}
 	
 	.labels{
@@ -369,10 +405,28 @@ Checkbox additions
 		padding: 15px;
 		font-weight: 600;
 		z-index: 3;
+	}
+
+	.image{
+		display: none;
 	}
 }
 
 @media only screen and (max-width:400px) and (max-height:800px){
+	.interactableOptions{
+		flex-direction: column;
+	}
+	.top_text{
+		font-size: 15px;
+	}
+	.title{
+		font-size: 50px;
+	}
+	.imgs{
+		height: 65px;
+		width: 65px;
+	}
+
 	.labels{
 		color: #000;
 		font-family:Montserrat;
@@ -399,27 +453,23 @@ Checkbox additions
 	}
 
 	.image{
-		position: absolute;
-		top: 50%;
-		left: 50%;
-	  
-		width: 150px;
-		height: 150px;
-	
-		margin-left: -75px;
-		margin-top: -75px;
-	  
-		overflow: hidden;
-		z-index: 1;
-		opacity: 0.3;
-	  
-		transition-duration: 1s;
+		display: none;
 	}
 }
 
 @media only screen and (max-width:500px) and (max-height:920px){
-	.formcontents{
-		top: 35%;
+	.interactableOptions{
+		flex-direction: column;
+	}
+	.top_text{
+		font-size: 15px;
+	}
+	.title{
+		font-size: 50px;
+	}
+	.imgs{
+		height: 65px;
+		width: 65px;
 	}
 	
 	.labels{
@@ -448,34 +498,23 @@ Checkbox additions
 	}
 
 	.image{
-		position: absolute;
-		top: 40%;
-		left: 50%;
-	  
-		width: 150px;
-		height: 150px;
-	
-		margin-left: -75px;
-		margin-top: -75px;
-	  
-		overflow: hidden;
-		z-index: 1;
-		opacity: 0.3;
-	  
-		transition-duration: 1s;
+		display: none;
 	}
 }
 
 @media only screen and (max-width:300px){
-	
+	.interactableOptions{
+		flex-direction: column;
+	}
+	.top_text{
+		font-size: 15px;
+	}
 	.title{
 		font-size: 45px;
-		font-weight: 600;
 	}
-
-	.formcontents{
-		top: 35%;
-		flex-direction: column;
+	.imgs{
+		height: 65px;
+		width: 65px;
 	}
 
 	.buffer{
@@ -505,5 +544,9 @@ Checkbox additions
 		padding: 15px;
 		font-weight: 600;
 		z-index: 3;
+	}
+
+	.image{
+		display: none;
 	}
 }

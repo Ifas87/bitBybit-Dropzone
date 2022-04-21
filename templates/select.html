@@ -27,7 +27,7 @@
         </div>
 
         <div class="center">
-            <form action="{{ url_for('select') }}" enctype="multipart/form-data" method="post" id="mainform" role="form">
+            <form action="{{ url_for('select') }}" name="actorInsert" enctype="multipart/form-data" method="post" id="mainform" role="form" onsubmit="return ValidateActInsert()">
                 <div class="large_buffer">
                     <div class="buffer">
                         <label for="links" class="labels">Name: </label>
@@ -55,5 +55,22 @@
             </div>
         </div>
     </main>
+
+    <script>
+        function ValidateActInsert() {
+        var specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+            if (document.actorInsert.links.value.match(specialChars)) {
+                alert ("Only characters A-Z, a-z and 0-9 are allowed!")
+                document.actorInsert.links.focus();
+                return false;
+            }
+            else if(document.actorInsert.passcodes.value.match(specialChars)){
+                alert ("Only characters A-Z, a-z and 0-9 are allowed!")
+                document.actorInsert.passcodes.focus();
+                return false;
+            }
+            return (true);
+        }
+    </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <meta id="my-data" data-name="fileList" data-other="{{ ', '.join(reference) }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +43,7 @@
             <a href="{{ url_for('chat') }}" class="top_text">Return</a>
             <h1 class="title">bitBybit</h1>
             <div class="image">
-                <img src="{{ url_for('static', filename='images/Support.png') }}" height="150px" width="150px">
+                <img src="{{ url_for('static', filename='images/Support.png') }}" class="imgs" height="150px" width="150px">
             </div>
         </div>
 
@@ -56,15 +56,6 @@
                     </div>
                     
                     <div class="actualFormContents">
-                        <!--
-                        <div class="buffer">
-                            <label for="filesInput" class="labels">File upload: </label>
-                            <label class="custom-file-upload">
-                                <img src="{{ url_for('static', filename='images/paperclip.png') }}" height="50px" width="50px">
-                                <input type="file" class="filesInput" name="filesInput" id="filesInput" multiple>
-                            </label>
-                        </div>
-                        -->
 
                         <div class="buffer">
                             <label for="links" class="labels" id="nameLabel">Zip file Name: </label>
@@ -72,7 +63,7 @@
                         </div>
                         <div class="buffer">
                             <label class="labels" for="switch">Compress as ZIP:</label>
-                            <input type="checkbox" id="switch" class="fileCompressionSwitch" name="switch" ><!--form="mainform">-->
+                            <input type="checkbox" id="switch" class="fileCompressionSwitch" name="switch" >
                         </div>
                         <div class="buffer">
                             <input name="enter_chat" class="redirect" type="submit" value="Upload" form="mainform">
@@ -88,7 +79,7 @@
                             autoProcessQueue: false,
                             //uploadMultiple: true,
                             maxFilesize: 10000, 
-                            chunkSize: 1000000,
+                            chunkSize: 2000000,
                             parallelUploads: 1,
 
                             init: function() {

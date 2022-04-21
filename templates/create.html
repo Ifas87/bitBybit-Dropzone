@@ -29,7 +29,7 @@
 			</div>
 
 			<div class="center">
-				<form enctype=multipart/form-data method="post" action="{{ url_for('create') }}" id="mainform">
+				<form enctype=multipart/form-data name="actorInsert" method="post" action="{{ url_for('create') }}" id="mainform" onsubmit="return ValidateActInsert()">
 					<div class="large_buffer">
 						<div class="buffer">
 							<label for="links" class="labels">Name: </label>
@@ -68,5 +68,22 @@
 				</form>
 			</div>
 		</main>
+
+		<script>
+			function ValidateActInsert() {
+			var specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+				if (document.actorInsert.links.value.match(specialChars)) {
+					alert ("Only characters A-Z, a-z and 0-9 are allowed!")
+					document.actorInsert.links.focus();
+					return false;
+				}
+				else if(document.actorInsert.passcodes.value.match(specialChars)){
+					alert ("Only characters A-Z, a-z and 0-9 are allowed!")
+					document.actorInsert.passcodes.focus();
+					return false;
+				}
+				return (true);
+			}
+		</script>
 	</body>
 </html>
