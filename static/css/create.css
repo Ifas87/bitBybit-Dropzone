@@ -200,11 +200,6 @@ ul li {
 		z-index: 1;
 	}
 
-	.image:hover{
-		width: 125px;
-		height: 125px;
-	}
-	
 	.topbar{
 		position: absolute;
 		top: 5px;
@@ -275,11 +270,6 @@ ul li {
 
 		opacity: 1;
 		z-index: 1;
-	}
-
-	.image:hover{
-		width: 125px;
-		height: 125px;
 	}
 	
 	.topbar{
@@ -379,6 +369,7 @@ ul li {
 
 @media only screen and (max-width:400px) and (max-height:700px){
 	.image{
+		display: none;
 		background: url();
 		position: absolute;
 		top: 0px;
@@ -492,6 +483,7 @@ ul li {
 
 @media only screen and (max-width:550px) and (max-height:920px){
 	.image{
+		display: none;
 		background: url();
 		position: absolute;
 		top: 0px;
@@ -571,6 +563,7 @@ ul li {
 
 @media only screen and (max-width:350px) and (max-height:600px){
 	.image{
+		display: none;
 		background: url();
 		position: absolute;
 		top: 0px;
@@ -644,6 +637,7 @@ ul li {
 
 @media only screen and (max-width:400px) and (max-height:800px){
 	.image{
+		display: none;
 		background: url();
 		position: absolute;
 		top: 0px;

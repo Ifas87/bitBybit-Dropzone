@@ -217,11 +217,13 @@ ul li {
 	top:305px;
 }
 
+/*
 .notice{
 	position:absolute;
 	left:475px;
 	top:405px;	
 }
+*/
 
 
 @media only screen and (max-width:1366px){
@@ -336,11 +338,6 @@ ul li {
 		opacity: 1;
 		z-index: 1;
 	}
-
-	.image:hover{
-		width: 125px;
-		height: 125px;
-	}
 	
 	.topbar{
 		position: absolute;
@@ -390,6 +387,7 @@ ul li {
 
 @media only screen and (max-width:415px) and (max-height:930px){
 	.image{
+		display: none;
 		position: absolute;
 		top: 220px;
 		left: 115px;
@@ -452,6 +450,7 @@ ul li {
 
 @media only screen and (max-width:550px) and (max-height:900px){
 	.image{
+		display: none;
 		position: absolute;
 		top: 220px;
 		left: 155px;
@@ -521,6 +520,7 @@ ul li {
 
 @media only screen and (max-width:400px) and (max-height:680px){
     .image{
+		display: none;
 		position: absolute;
 		top: 220px;
 		left: 160px;

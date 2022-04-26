@@ -59,6 +59,11 @@
     <script>
         function ValidateActInsert() {
         var specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+            if(document.actorInsert.links.value.toUpperCase().includes("tempZipFiles".toUpperCase())){
+				alert("That name is not allowed");
+				document.actorInsert.links.focus();
+				return false;
+			}
             if (document.actorInsert.links.value.match(specialChars)) {
                 alert ("Only characters A-Z, a-z and 0-9 are allowed!")
                 document.actorInsert.links.focus();

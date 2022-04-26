@@ -160,6 +160,13 @@ def timer(t, chatname):
 """
 @app.route('/')
 def hello():
+    # Create the necessary folders if they do not exist
+    if not os.path.exists( app.config["UPLOADED_PATH"] ):
+        os.mkdir(app.config["UPLOADED_PATH"])
+        os.mkdir( os.path.join(app.config["UPLOADED_PATH"], "placeholder") )
+        os.mkdir( os.path.join(app.config["UPLOADED_PATH"], "tempZipFiles") )
+        with open( os.path.join(app.config["UPLOADED_PATH"], "chatrooms.txt") , 'w') as f:
+            f.write("placeholder : 123")
     session["current_room"] = "placeholder"
     session["currentVersion"] = 1
     return render_template('index.html', template_folder='templates')
@@ -357,7 +364,6 @@ def options():
     customPath = r"" + app.config["UPLOADED_PATH"] + r"\\" + roomname
     relativePath = "content/tempZipFiles"
     dir_contents = []
-    inner_dir_path = r""
     fileNumbers = 0
     global fileContinuity
     session["fileContinuity"] = fileContinuity
@@ -373,9 +379,9 @@ def options():
         fileNumbers = int(request.form.get("Numfiles"))
 
         # Chekc if there are any files
-        print(request.form)
-        print(request.files.getlist("filesInput"))
-        print(checks, zipname)
+        #print(request.form)
+        #print(request.files.getlist("filesInput"))
+        #print(checks, zipname)
 
 
         if len(request.files.getlist("filesInput")) > 0:
@@ -421,16 +427,11 @@ def options():
                 folder_name = switchFiletoFolder(tempFile.filename, ".", "-")
                 current_chunk = int(request.form['dzchunkindex'])
                 total_chunks = int(request.form["dztotalchunkcount"])
-                
-                """
-                    session["currentVersion"] = 1
-                    session["fileContinuity"] = fileContinuity
-                """
 
                 if folder_name in dir_contents:
                     roomContents = lister2( os.path.join( customPath, folder_name ) )
 
-                    print(os.path.join( customPath, folder_name ))
+                    #print(os.path.join( customPath, folder_name ))
                     highestVersion = ""
                     innerFiles = []
 
@@ -448,7 +449,7 @@ def options():
                             highestVersion = str(max(innerFiles)+1)
                             session["currentVersion"] = highestVersion
                         
-                        print("new highest", highestVersion)
+                        print("new highest", highestVersion, fileContinuity, session["fileContinuity"])
 
                     
                     print("Session vriables here:", session["currentVersion"])
@@ -464,7 +465,7 @@ def options():
                         fileContinuity = False
                         
                         with open( VersionInfoPath, 'a') as f:
-                            f.write("Version "+highestVersion +": "+temp_strs)
+                            f.write("Version "+session["currentVersion"] +": "+temp_strs)
 
                 else:
                     if current_chunk == 0:
