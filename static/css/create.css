@@ -1,3 +1,22 @@
+.mega-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2;
+    position: relative;
+
+	position: absolute;
+    height: 80%;
+	width: 100%;
+
+	background-image: url("../images/Backdrop\ \(3\).png");
+    background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
 #show_bg_2 {
 	position: absolute;
 	width: 100%;
@@ -9,20 +28,27 @@
 	background: radial-gradient(73.47% 73.47% at 50% 50%, #FFFFFF 29.17%, #f1f1f1 72.92%);
   }
 
-ul {
-	list-style-type: none;
-}
-  
-ul li {
-	display: inline;
+.filler{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+	justify-content: center;
+	width: 80%;
+	flex-grow: 1;
+
+	position: relative;
+	z-index: 2;
 }
 
 .topbar{
-	position: absolute;
-	top: 10px;
-	left :0px;
-  
 	z-index: 2;
+    flex-grow: 1;
+}
+
+.imageLogo{
+	transition-duration: 1s;
+    flex-grow: 1;
+	align-items: center;
 }
 
 .top_text{
@@ -33,72 +59,50 @@ ul li {
   
 	text-decoration: none;
 	list-style-type: none;
-	padding: 20px;
 	transition-duration: 0.5s;
   
 	z-index: 2;
 }
 
-.top_text:hover {
-	font-size: 24px;
-}
-
-.title {
+.subtitle {
 	color: #000;
-	position: absolute;
-	top: 5%;
-	left: 40%;
-	font-family: Montserrat;
-	font-weight: 600;
-	font-size: 80px;
+    
+    font-family: Montserrat;
+	font-weight: 500;
+	font-size: 70px;
 	opacity: 1;
-	text-align: left;
+	text-align: center;
 	
 	transition-duration: 0.5s;
 	z-index: 3;
+
+    flex-grow: 2;
 }
 
-.title:hover{
-	font-size: 85px;
-}
-
-.image{
-	background-image: url("../images/Support.png");
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
+.top_text{
+	font-family: Montserrat;
+	font-size: 20px;
+	color: #000;
+	font-weight: 700;
   
-	position: absolute;
-	top: 20px;
-	left: 1300px;
+	text-decoration: none;
+	list-style-type: none;
+	transition-duration: 0.5s;
   
-	width: 150px;
-	height: 150px;
-  
-	overflow: hidden;
 	z-index: 2;
-  
-	transition-duration: 1s;
-}
-
-.image:hover{
-	transform: rotate(5deg);
-	width: 160px;
-	height: 160px;
 }
 
 .center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+	flex-grow: 4;
     width: 550px;
     height: 300px;
-    margin-top: -150px;
-    margin-left: -275px;
 
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+
+	position: relative;
+	z-index: 2;
 }
 
 .buffer{
@@ -113,7 +117,7 @@ ul li {
 }
 
 .large_buffer{
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 .redirect {
@@ -142,12 +146,10 @@ ul li {
 	border-color: #1A73E8;
 }
 
-.err{
-	position: absolute;
-	top: 300px;
-	left: 750px;
-
-	width: 300px;
+.notice{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .labels{
@@ -188,43 +190,28 @@ ul li {
 }
 
 @media only screen and (max-width:1366px){
-	.image{
-		position: absolute;
-		top: 25px;
-		left: 85%;
-	  
-		width: 125px;
-		height: 125px;
-
-		opacity: 1;
-		z-index: 1;
-	}
-
-	.topbar{
-		position: absolute;
-		top: 5px;
-		left: -25px;
-	}
 
 	.top_text{
-		font-size: 22px;
+		font-size: 20px;
 	}
 
-	.title{
-		font-size: 90px;
-
-		position: absolute;
-		top: 40px;
-		left: 310px;
+	.filler{
+		display: flex;
+		flex-direction: row;
+		height: 50px;
 	}
 
-	.title:hover{
-		font-size: 85px;
+	.large_buffer{
+		margin: 0px;
 	}
 
-	.center {
-		position: absolute;
-		top: 30%;
+	.notice{
+		width: 200px;
+		word-wrap: break-word;
+	}
+
+	.subtitle{
+		font-size: 65px;
 	}
 	
 	.buffer{
@@ -260,43 +247,33 @@ ul li {
 }
 
 @media only screen and (max-width:850px){
-	.image{
-		position: absolute;
-		top: 25px;
-		left: 80%;
-	  
-		width: 125px;
-		height: 125px;
-
-		opacity: 1;
-		z-index: 1;
-	}
 	
-	.topbar{
-		position: absolute;
-		top: 5px;
-		left: -25px;
-	}
-
 	.top_text{
-		font-size: 22px;
+		font-size: 20px;
 	}
 
-	.title{
-		font-size: 70px;
-
-		position: absolute;
-		top: 20px;
-		left: 220px;
+	.filler{
+		display: flex;
+		flex-direction: row;
 	}
 
-	.title:hover{
-		font-size: 85px;
+	.notice{
+		width: 200px;
+		word-wrap: break-word;
+		margin: none;
+		padding: none;
 	}
 
-	.center {
-		position: absolute;
-		top: 30%;
+	.subtitle{
+		font-size: 65px;
+	}
+
+	.filler{
+		flex-grow: 1;
+	}
+	.center{
+		flex-direction: column;
+		flex-grow: 20;
 	}
 	
 	.buffer{
@@ -313,44 +290,8 @@ ul li {
 		font-weight: 600;
 	}
 
-	.ln{
-		position: absolute;
-		top: 180px;
-		left: 70px;
-	}
-
-	.textln{
-		position: absolute;
-		top: 170px;
-		left: 200px;
-
-		width: 300px;
-		height: 40px;
-	}
-
-	.sp{
-		position: absolute;
-		top: 270px;
-		left: 70px;
-	}
-
-	.textsp{
-		position: absolute;
-		top: 250px;
-		left: 270px;
-
-		width: 235px;
-		height: 40px;
-	}
-
 	.redirect{
 		font-size: 25px;
-	}
-
-	.lat{
-		position:absolute;
-		left:-25px;
-		top:355px;
 	}
 	
 	.textlat{
@@ -368,51 +309,22 @@ ul li {
 }
 
 @media only screen and (max-width:400px) and (max-height:700px){
-	.image{
-		display: none;
-		background: url();
-		position: absolute;
-		top: 0px;
-		left: 0px;
-	  
-		width: 0px;
-		height: 0px;
-
-		opacity: 0.15;
-		z-index: 1;
-	}
 	
-	.topbar{
-		position: absolute;
-		top: 5px;
-		left: -25px;
-	}
-
 	.top_text{
-		font-size: 22px;
+		font-size: 15px;
 	}
 
-	.title{
-		font-size: 60px;
-
-		position: absolute;
-		top: 80px;
-		left: 60px;
+	.notice{
+		width: 200px;
+		word-wrap: break-word;
 	}
 
-	.title:hover{
-		font-size: 62px;
+	.subtitle{
+		font-size: 45px;
 	}
 
-	.formloc {
-		position: absolute;
-		top: 30px;
-		left: -80px;
-	}
-
-	td, th{
-		width: 150px;
-		padding: 5px;
+	.imageLogo{
+		display: none;
 	}
 
 	.labels{
@@ -425,46 +337,8 @@ ul li {
 		font-weight: 600;
 	}
 
-	.ln{
-		position: absolute;
-		top: 200px;
-		left: 100px;
-	}
-
-	.textln{
-		position: absolute;
-		top: 180px;
-		left: 200px;
-
-		width: 220px;
-		height: 40px;
-	}
-
-	.sp{
-		position: absolute;
-		top: 290px;
-		left: 100px;
-	}
-
-	.textsp{
-		position: absolute;
-		top: 270px;
-		left: 240px;
-
-		width: 180px;
-		height: 40px;
-	}
-
 	.redirect{
 		font-size: 25px;
-	}
-
-	.lat{
-		position:absolute;
-		left: 105px;
-		top:355px;
-
-		width:min-content;
 	}
 	
 	.textlat{
@@ -482,47 +356,22 @@ ul li {
 }
 
 @media only screen and (max-width:550px) and (max-height:920px){
-	.image{
-		display: none;
-		background: url();
-		position: absolute;
-		top: 0px;
-		left: 0px;
-	  
-		width: 0px;
-		height: 0px;
-
-		opacity: 0.15;
-		z-index: 1;
-	}
 	
-	.topbar{
-		position: absolute;
-		top: 5px;
-		left: -25px;
-	}
-
 	.top_text{
-		font-size: 22px;
+		font-size: 15px;
 	}
 
-	.title{
-		font-size: 60px;
-
-		position: absolute;
-		top: 80px;
-		left: 60px;
-
-		font-weight: 600;
+	.notice{
+		width: 200px;
+		word-wrap: break-word;
 	}
 
-	.title:hover{
-		font-size: 62px;
+	.subtitle{
+		font-size: 45px;
 	}
 
-	.center {
-		position: absolute;
-		top: 40%;
+	.imageLogo{
+		display: none;
 	}
 	
 	.buffer{
@@ -562,45 +411,21 @@ ul li {
 }
 
 @media only screen and (max-width:350px) and (max-height:600px){
-	.image{
-		display: none;
-		background: url();
-		position: absolute;
-		top: 0px;
-		left: 0px;
-	  
-		width: 0px;
-		height: 0px;
-
-		opacity: 0.15;
-		z-index: 1;
-	}
-	
-	.topbar{
-		position: absolute;
-		top: 5px;
-		left: -30px;
-	}
-
 	.top_text{
-		font-size: 20px;
+		font-size: 15px;
 	}
 
-	.title{
-		font-size: 55px;
-
-		position: absolute;
-		top: 80px;
-		left: 50px;
+	.notice{
+		width: 200px;
+		word-wrap: break-word;
 	}
 
-	.title:hover{
-		font-size: 62px;
+	.subtitle{
+		font-size: 45px;
 	}
 
-	.center {
-		position: absolute;
-		top: 50%;
+	.imageLogo{
+		display: none;
 	}
 	
 	.buffer{
@@ -636,50 +461,28 @@ ul li {
 }
 
 @media only screen and (max-width:400px) and (max-height:800px){
-	.image{
-		display: none;
-		background: url();
-		position: absolute;
-		top: 0px;
-		left: 0px;
-	  
-		width: 0px;
-		height: 0px;
-
-		opacity: 0.15;
-		z-index: 1;
-	}
-	
-	.topbar{
-		position: absolute;
-		top: 5px;
-		left: -30px;
-	}
 
 	.top_text{
-		font-size: 20px;
+		font-size: 15px;
 	}
 
-	.title{
-		font-size: 55px;
-
-		position: absolute;
-		top: 80px;
-		left: 50px;
+	.notice{
+		width: 200px;
+		word-wrap: break-word;
 	}
 
-	.title:hover{
-		font-size: 62px;
+	.subtitle{
+		font-size: 45px;
 	}
 
-	.center {
-		position: absolute;
-		top: 50%;
+	.imageLogo{
+		display: none;
 	}
 	
 	.buffer{
 		flex-direction: column;
 	}
+
 
 	.labels{
 		font-size: 18px;

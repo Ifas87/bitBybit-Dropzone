@@ -16,17 +16,21 @@
 	</head>
 			
 	<body>
-		<main>
-		<div class="show_bg_2"></div>
-			<div class="topbar">
-				<ul>
-					<li><a href="{{ url_for('hello') }}" class="top_text">Home</a></li>
-				</ul>
+		<main class="mega-flex">
+			<div class="show_bg_2"></div>
+
+			<div class="filler">
+				<div class="topbar">
+					<a href="{{ url_for('hello') }}" class="top_text">Home</a>
+				</div>
+					
+				<div class="subtitle"> bitBybit </div>
+	
+				<div class="imageLogo">
+					<img src="{{ url_for('static', filename='images/Support.png') }}" height="150px" width="150px">
+				</div>
 			</div>
-			<div class="image"></div>
-			<div class="buffer">
-				<h1 class="title">bitBybit</h1>
-			</div>
+			
 
 			<div class="center">
 				<form enctype=multipart/form-data name="actorInsert" method="post" action="{{ url_for('create') }}" id="mainform" onsubmit="return ValidateActInsert()">
@@ -55,15 +59,16 @@
 							<input name="submit" class="redirect" type="submit" value="Join">
 						</div>
 					</div>
-
-					<div class="notice">
-					{% with messages = get_flashed_messages() %}  
-					{% if messages %}  
-						{% for message in messages %}  
-						<p class="top_text err">{{ message }}</p>  
-						{% endfor %}  
-					{% endif %}  
-					{% endwith %}  
+					<div class="buffer">
+						<div class="notice">
+							{% with messages = get_flashed_messages() %}  
+							{% if messages %}  
+								{% for message in messages %}  
+								<p class="top_text">{{ message }}</p>  
+								{% endfor %}  
+							{% endif %}  
+							{% endwith %}  
+						</div>
 					</div>
 				</form>
 			</div>

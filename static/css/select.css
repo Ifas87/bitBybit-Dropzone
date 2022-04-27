@@ -9,52 +9,80 @@
 	background: radial-gradient(73.47% 73.47% at 50% 50%, #FFFFFF 29.17%, #f1f1f1 72.92%);
   }
 
-ul {
-	list-style-type: none;
+  .mega-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2;
+    position: absolute;
+
+    height: 100%;
+	width: 100%;
+
+    background-image: url("../images/Backdrop\ \(3\).png");
+    background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 }
-  
-ul li {
-	display: inline;
+
+.filler{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+	justify-content: center;
+	width: 80%;
+
+	flex-grow: 1;
 }
 
 .topbar{
-	position: absolute;
-	top: 10px;
-	left :0px;
-  
 	z-index: 2;
+    flex-grow: 1;
+    padding: 10px;
+}
+
+.imageLogo{
+	transition-duration: 1s;
+    flex-grow: 1;
 }
 
 .top_text{
 	font-family: Montserrat;
-	font-size: 20px;
+	font-size: 25px;
 	color: #000;
 	font-weight: 700;
   
 	text-decoration: none;
 	list-style-type: none;
-	padding: 20px;
+    padding: 10px;
 	transition-duration: 0.5s;
   
 	z-index: 2;
+    flex-grow: 1;
 }
 
-.top_text:hover {
-	font-size: 24px;
+.subtitle {
+	color: #000;
+    
+    font-family: Montserrat;
+	font-weight: 600;
+	font-size: 70px;
+	opacity: 1;
+	text-align: center;
+	
+	transition-duration: 0.5s;
+	z-index: 3;
+
+    flex-grow: 2;
 }
 
 .center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 550px;
-    height: 300px;
-    margin-top: -150px;
-    margin-left: -275px;
-
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+	flex-grow: 6;
 }
 
 .buffer{
@@ -68,58 +96,15 @@ ul li {
     align-items: center;
 }
 
-.title {
-	color: #000;
-	font-family: Montserrat;
-	font-weight: 500;
-	font-size: 80px;
-	opacity: 1;
-	text-align: left;
-	
-	transition-duration: 0.5s;
-	z-index: 3;
-}
-
-.title:hover{
-	font-size: 85px;
-}
-
-.image{
-	background-image: url("../images/Support.png");
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
-  
-	position: absolute;
-	top: 20px;
-	left: 90%;
-  
-	width: 150px;
-	height: 150px;
-
-    margin-left: -75px;
-  
-	overflow: hidden;
-	z-index: 2;
-  
-	transition-duration: 1s;
-}
-
 .large_buffer{
-	margin-top: 50px;
-}
-
-.image:hover{
-	transform: rotate(5deg);
-	width: 160px;
-	height: 160px;
+	margin-top: 30px;
 }
 
 .labels{
 	color: #000;
-	font-family:Montserrat;
+	font-family: Montserrat;
 	font-weight: 600;
-	font-size:30px;
+	font-size: 30px;
 	letter-spacing:0;
 
     padding: 15px;
@@ -158,271 +143,100 @@ ul li {
 	cursor: pointer;
 }
 
-.err{
-	position: absolute;
-	top: 0px;
-	left: 200px;
-
-	width: 300px;
-}
-
 .redirect:hover {
 	background: #fff;
 	color: #1A73E8;
 	border-color: #1A73E8;
 }
 
-.labels{
-	color: #000;
-	font-family:Montserrat;
-	font-weight: 500;
-	font-size:30px;
-	letter-spacing:0;
-}
 
-.textboxes {
-	color: #000;
-
-	border-width: 0 0 6px;
-	border-color:#1A73E8;
-
-	font-family:Montserrat;
-	font-size: 20px;
-
-	padding: 5px;
-	font-weight: 500;
-}
-
-.ln {
-	position:absolute;
-	left:145px;
-	top:230px;
-}
-
-.sp {
-	position:absolute;
-	left:115px;
-	top:305px;
-}
-
-.textln {
-	position:absolute;
-	left:350px;
-	top:230px;
-}
-
-.textsp {
-	position:absolute;
-	left:375px;
-	top:305px;
-}
-
-/*
 .notice{
-	position:absolute;
-	left:475px;
-	top:405px;	
+	display: flex;
+	justify-content: center;
+	width: 200px;
+	word-wrap: break-word;	
 }
-*/
+
 
 
 @media only screen and (max-width:1366px){
-    .image{
-		position: absolute;
-		top: 25px;
-		left: 850px;
-	  
-		width: 125px;
-		height: 125px;
-
-		opacity: 1;
-		z-index: 1;
+    .top_text{
+		font-size: 25px;
 	}
 
-	.image:hover{
-		width: 125px;
-		height: 125px;
-	}
-	
-	.topbar{
-		position: absolute;
-		top: 5px;
-		left: -25px;
+	.subtitle{
+		font-size: 75px;
+		font-weight: 600;
 	}
 
-	.top_text{
-		font-size: 22px;
-	}
-
-	.title{
-		font-size: 90px;
-
-		position: absolute;
-		top: 80px;
-		left: 310px;
-	}
-
-	.title:hover{
-		font-size: 85px;
-	}
-
-	.formloc {
-		position: absolute;
-		top: 70px;
-		left: 240px;
-	}
-
-	td, th{
-		width: 500px;
-		padding: 30px;
+	.center{
+		flex-grow: 8;
 	}
 
 	.labels{
-		font-size: 30px;
-		font-weight: 500;
+		font-size: 25px;
+		font-weight: 600;
 	}
 
 	.textboxes{
-		font-size: 30px;
-		font-weight: 500;
+		font-size: 23px;
+		font-weight: 600;
 	}
 
-	.ln{
-		position: absolute;
-		top: 200px;
-		left: 80px;
-	}
-
-	.textln{
-		position: absolute;
-		top: 190px;
-		left: 200px;
-
-		width: 300px;
-		height: 40px;
-	}
-
-	.sp{
-		position: absolute;
-		top: 290px;
-		left: 80px;
-	}
-
-	.textsp{
-		position: absolute;
-		top: 270px;
-		left: 280px;
-
-		width: 220px;
-		height: 40px;
+	.large_buffer{
+		margin-top: 1px;
 	}
 
 	.redirect{
-		position: absolute;
-		top: 400px;
-		left: 155px;
-
 		font-size: 25px;
 	}
 }
 
 @media only screen and (max-width:850px){
-    .image{
-		position: absolute;
-		top: 25px;
-		left: 90%;
-	  
-		width: 125px;
-		height: 125px;
-
-		opacity: 1;
-		z-index: 1;
-	}
-	
-	.topbar{
-		position: absolute;
-		top: 5px;
-		left: -25px;
+    .top_text{
+		font-size: 25px;
 	}
 
-	.top_text{
-		font-size: 22px;
-	}
-
-	.title{
-		font-size: 90px;
+	.subtitle{
+		font-size: 60px;
 		font-weight: 600;
-
-		position: absolute;
-		top: 10px;
-		left: 210px;
 	}
 
 	.center{
-		top: 30%
-	}
-
-	.title:hover{
-		font-size: 85px;
+		flex-grow: 8;
 	}
 
 	.labels{
-		font-size: 30px;
+		font-size: 25px;
 		font-weight: 600;
 	}
 
 	.textboxes{
-		font-size: 30px;
+		font-size: 23px;
 		font-weight: 600;
 	}
 
-	.redirect{
-		position: absolute;
-		top: 300px;
-		left: 155px;
+	.large_buffer{
+		margin-top: 10px;
+	}
 
+	.redirect{
 		font-size: 25px;
 	}
 }
 
 @media only screen and (max-width:415px) and (max-height:930px){
-	.image{
-		display: none;
-		position: absolute;
-		top: 220px;
-		left: 115px;
-	  
-		width: 200px;
-		height: 200px;
-
-		opacity: 0.15;
-	}
-	
-	.topbar{
-		position: absolute;
-		top: 5px;
-		left: -25px;
-	}
-
 	.top_text{
-		font-size: 22px;
+		font-size: 20px;
 	}
 
-	.title{
-		font-size: 60px;
-
-		position: absolute;
-		top: 80px;
-		left: 60px;
+	.imageLogo{
+		display: none;
 	}
 
-	.title:hover{
-		font-size: 62px;
-	}
-
-	.center{
-		position: absolute;
-		top: 40%;
+	.subtitle{
+		font-size: 45px;
+		font-weight: 600;
 	}
 
 	.buffer{
@@ -440,53 +254,27 @@ ul li {
 	}
 
 	.redirect{
-		position: absolute;
-		top: 300px;
-		left: 155px;
 
 		font-size: 25px;
 	}
 }
 
 @media only screen and (max-width:550px) and (max-height:900px){
-	.image{
-		display: none;
-		position: absolute;
-		top: 220px;
-		left: 155px;
-	  
-		width: 200px;
-		height: 200px;
-
-		opacity: 0.15;
-	}
-	
-	.topbar{
-		position: absolute;
-		top: 5px;
-		left: -25px;
-	}
-
 	.top_text{
-		font-size: 22px;
+		font-size: 20px;
 	}
 
-	.title{
-		font-size: 60px;
-
-		position: absolute;
-		top: 80px;
-		left: 60px;
-
-		font-weight: 500;
+	.imageLogo{
+		display: none;
 	}
 
-	.title:hover{
-		font-size: 62px;
+	.subtitle{
+		font-size: 45px;
+		font-weight: 600;
 	}
 
 	.center{
-		top: 40%;
+		flex-grow: 6;
 	}
 
 	.buffer{
@@ -510,54 +298,28 @@ ul li {
 	}
 
 	.redirect{
-		position: absolute;
-		top: 300px;
-		left: 155px;
 
 		font-size: 25px;
 	}
 }
 
 @media only screen and (max-width:400px) and (max-height:680px){
-    .image{
-		display: none;
-		position: absolute;
-		top: 220px;
-		left: 160px;
-	  
-		width: 170px;
-		height: 170px;
-
-		opacity: 0.25;
-	}
-	
-	.topbar{
-		position: absolute;
-		top: 5px;
-		left: -30px;
-	}
-
-	.top_text{
+    .top_text{
 		font-size: 20px;
 	}
 
-	.title{
-		font-size: 45px;
-		font-weight: 600;
-
-		position: absolute;
-		top: 40px;
-		left: 70px;
+	.imageLogo{
+		display: none;
 	}
 
-	.title:hover{
-		font-size: 50px;
+	.subtitle{
+		font-size: 45px;
+		font-weight: 600;
 	}
 
 	.labels{
 		font-size: 18px;
 		font-weight: 600;
-
 	}
 
 	.textboxes{
@@ -566,10 +328,6 @@ ul li {
 	}
 
 	.redirect{
-		position: absolute;
-		top: 300px;
-		left: 180px;
-
 		height: 50px;
 		width: 155px;
 

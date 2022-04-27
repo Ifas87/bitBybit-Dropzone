@@ -165,8 +165,8 @@ def hello():
         os.mkdir(app.config["UPLOADED_PATH"])
         os.mkdir( os.path.join(app.config["UPLOADED_PATH"], "placeholder") )
         os.mkdir( os.path.join(app.config["UPLOADED_PATH"], "tempZipFiles") )
-        with open( os.path.join(app.config["UPLOADED_PATH"], "chatrooms.txt") , 'w') as f:
-            f.write("placeholder : 123")
+        with open( PATH_chats , 'w') as f:
+            f.write("placeholder : 123\n")
     session["current_room"] = "placeholder"
     session["currentVersion"] = 1
     return render_template('index.html', template_folder='templates')
